@@ -81,7 +81,7 @@ async function handleBE(body, openai) {
         model: "gpt-4o-mini",
         response_format: { type: "json_object" },
         messages: [
-            { role: "system", content: "Extract business details from image and return JSON..." },
+            { role: "system", content: prompts.be },
             {
                 role: "user",
                 content: [
