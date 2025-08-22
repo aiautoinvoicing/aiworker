@@ -66,3 +66,29 @@ function jsonResponse(obj) {
         headers: { "Content-Type": "application/json" },
     });
 }
+
+
+
+
+async function handleBE(body, openai) {
+    const { base64_image } = body;
+    if (!base64_image) return badRequest("Missing base64_image");
+
+    const completion = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        response_format: { type: "json_object" },
+        messages: [
+            { role: "system", content: "Extract business details from image and return JSON..." },
+            {
+                role: "user",
+                content: [
+                    { type: "text", text: "extract the data in this Name Card and output into JSON" },
+                    { type: "image_url", image_url: { url: `data:image/png;base64,${base64_image}`, detail: "high" } },
+                ],
+            },
+        ],
+    });
+
+    const data = completion.choices[0]?.message?.content ?? "{}";
+    return jsonResponse({ data });
+}
