@@ -56,7 +56,7 @@ export const prompts = {
 
 
     client: `
-        You are an assistant that extracts structured data from Name Card or similar documents provided as images. 
+        You are an assistant that extracts structured data from Name Card or similar documents provided as images or pdf. 
         Return a JSON object with at least the following fields:
         - client_business_name: string
         - client_contact_name: string
@@ -75,9 +75,11 @@ export const prompts = {
 
 
 
-    item: `
-        You are an assistant that extracts structured data from Item List or similar documents provided as images. 
-        Return a JSON object with at least the following fields:
+    item_list: `
+        You are an assistant that extracts structured data from Item List or similar documents provided as images or pdf. 
+        Return your output as a JSON array where each element represents one item with the following fields:
+        
+        - item_code: string
         - item_name: string
         - item_rate: number
         - item_unit_of_measure: string
