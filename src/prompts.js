@@ -66,7 +66,7 @@ export const prompts = {
         - client_phone: string
         - client_website: string    
         - client_currency: string, based on the address to return the possible currency. 
-        - client_note: string
+        - client_note: based on the scanned image, add a summary note about the business 
 
         If the value is not found, return it as null.
         Return only valid JSON.
