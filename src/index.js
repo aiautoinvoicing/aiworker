@@ -145,9 +145,7 @@ async function handleItemList(body, openai) {
         ],
     });
 
-    obj = JSON.parse(completion.choices[0]?.message?.content ?? "{}");
-    const item_array = Array.isArray(obj.items) ? obj.items : [];
-    
+    const item_array = JSON.parse(completion.choices[0]?.message?.content ?? "[]");
     return jsonResponse( item_array );
 }
 
