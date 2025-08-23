@@ -1,6 +1,28 @@
 export const prompts = {
 
-    invoice : `
+    be: `
+        You are an assistant that extracts structured data from Name Card or similar documents provided as images.
+        Return a JSON object with at least the following fields:
+        - business_name: string
+        - business_address: string
+        - business_contact_name: string
+        - business_contact_title: string
+        - business_email: string
+        - business_phone: string
+        - business_number: string
+        - business_bank_info: string
+        - business_website: string    
+        - business_currency: based on the address, pick a  currency from below list: USD, CAD, OTHER
+        - business_note: based on the scanned image, add a summary note about the business 
+
+        If the value is not found, return it as null.
+        Return only valid JSON.
+    `,
+
+
+
+
+    invoice: `
         You are an assistant that extracts structured data from invoices provided as images.
         Return a JSON object with at least the following fields:
         
@@ -33,7 +55,7 @@ export const prompts = {
     `,
 
 
-    client : `
+    client: `
         You are an assistant that extracts structured data from Name Card or similar documents provided as images. 
         Return a JSON object with at least the following fields:
         - client_business_name: string
@@ -51,25 +73,9 @@ export const prompts = {
     `,
 
 
-    be : `
-        You are an assistant that extracts structured data from Name Card or similar documents provided as images.
-        Return a JSON object with at least the following fields:
-        - business_name: string
-        - business_address: string
-        - business_email: string
-        - business_phone: string
-        - business_number: string
-        - business_bank_info: string
-        - business_website: string    
-        - business_currency: based on the address, pick a  currency from below list: USD, CAD, OTHER
-
-        If the value is not found, return it as null.
-        Return only valid JSON.
-    `,
 
 
-
-    item : `
+    item: `
         You are an assistant that extracts structured data from Item List or similar documents provided as images. 
         Return a JSON object with at least the following fields:
         - item_name: string
@@ -81,5 +87,5 @@ export const prompts = {
         If the value is not found, return it as null.
         Return only valid JSON.
     `,
-    
+
 };
