@@ -132,7 +132,7 @@ async function handleItemList(body, openai) {
 
     const completion = await openai.chat.completions.create({
         model: "gpt-4o-mini",
-        response_format: { type: "json" },
+        response_format: { type: "json_object" },
         messages: [
             { role: "system", content: prompts.item_list },
             {
@@ -144,11 +144,9 @@ async function handleItemList(body, openai) {
             },
         ],
     });
-    const item_array = completion.choices[0]?.message?.content ?? "[]";
-    return jsonResponse(item_array);
 
-    // const item_array = JSON.parse(completion.choices[0]?.message?.content ?? "[]");
-    // return jsonResponse( item_array );
+    const item_array = JSON.parse(completion.choices[0]?.message?.content ?? "[]");
+    return jsonResponse( item_array );
 }
 
 
