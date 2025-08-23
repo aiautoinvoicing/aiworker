@@ -15,7 +15,10 @@ export const prompts = {
         - business_currency: based on the address, pick a  currency from below list: USD, CAD, OTHER
         - business_note: based on the scanned image, add a summary note about the business 
 
-        If the value is not found, return it as null.
+        If a value is not found, return:
+            - "" (empty string) for string fields
+            - 0 for number fields
+            - today for date fields
         Return only valid JSON.
     `,
 
@@ -50,7 +53,10 @@ export const prompts = {
         - invoice_notes: number
         - invoice_terms_conditions: number
 
-        If the value is not found, return it as null.
+        If a value is not found, return:
+            - "" (empty string) for string fields
+            - 0 for number fields
+            - today for date fields
         Return only valid JSON.
     `,
 
@@ -68,7 +74,10 @@ export const prompts = {
         - client_currency: string, based on the address to return the possible currency. 
         - client_note: based on the scanned image, add a summary note about the business 
 
-        If the value is not found, return it as null.
+        If a value is not found, return:
+            - "" (empty string) for string fields
+            - 0 for number fields
+            - today for date fields
         Return only valid JSON.
     `,
 
@@ -86,7 +95,10 @@ export const prompts = {
         - item_sku: string
         - item_description: string
 
-        If the value is not found, return it as null.
+        If a value is not found, return:
+            - "" (empty string) for string fields
+            - 0 for number fields
+            - today for date fields
         Return only valid JSON.
     `,
 
