@@ -79,7 +79,7 @@ export const prompts = {
         You are an assistant that extracts structured data from Item List or similar documents provided as images or pdf. 
         Return your output as a JSON array where each element represents one item with the following fields:
         
-        - item_code: string
+        - item_number: string
         - item_name: string
         - item_rate: number
         - item_unit_of_measure: string
