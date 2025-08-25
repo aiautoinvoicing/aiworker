@@ -30,8 +30,6 @@ export default {
                 return await handleClient(body, openai);
             } else if (url.pathname === "/item_list") {
                 return await handleItemList(body, openai);
-            } else if (url.pathname === "/referral") {
-                return await handleReferral(body, openai);
             } else {
                 return new Response("Not found", { status: 404 });
             }
@@ -125,46 +123,6 @@ async function handleClient(body, openai) {
     return jsonResponse({ data });
 }
 
-
-
-async function handleReferral(body, env) {
-    const { userId } = body;
-    if (!userId) return badRequest("Missing userId");
-
-    try {
-        const resp = await fetch("https://api.deeplinknow.com/v1/links", {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${env.DLN_API_KEY}`, // store key in Worker secrets
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                url: `https://myapp.com/referral?ref=${userId}`,
-                domain: "myapp.dln.link",
-                android: {
-                    fallback: "https://play.google.com/store/apps/details?id=com.mycompany.myapp"
-                }
-            }),
-        });
-
-        if (!resp.ok) {
-            const text = await resp.text();
-            return new Response(JSON.stringify({ error: `DeepLinkNow API failed: ${text}` }), {
-                status: 502,
-                headers: { "Content-Type": "application/json" },
-            });
-        }
-
-        const data = await resp.json();
-        return jsonResponse({ shortUrl: data.shortUrl });
-
-    } catch (err) {
-        return new Response(JSON.stringify({ error: err.message }), {
-            status: 500,
-            headers: { "Content-Type": "application/json" },
-        });
-    }
-}
 
 
 
